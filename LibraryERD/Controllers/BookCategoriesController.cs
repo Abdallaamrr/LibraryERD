@@ -42,10 +42,10 @@ namespace LibraryERD.Controllers
         }
 
 
-        [HttpPut("UpdateBookCategory/{CategoryId}/Book/{BookId}")]
-        public async Task<ActionResult<BookCategories>> UpdateBookCategory(int CategoryId, int BookId, BookCategories updatedBookCategory)
+        [HttpPut("UpdateBookCategory")]
+        public async Task<ActionResult<BookCategories>> UpdateBookCategory(BookCategories updatedBookCategory)
         {
-            var bookCategory = await _context.BookCategory.Where(e => e.CategoryId == CategoryId && e.BookId == BookId).FirstOrDefaultAsync();
+            var bookCategory = await _context.BookCategory.Where(e => e.CategoryId == updatedBookCategory.CategoryId && e.BookId == updatedBookCategory.BookId).FirstOrDefaultAsync();
             if (bookCategory is null)
             {
                 return NotFound("BOOK CATEGORY NOT FOUND");

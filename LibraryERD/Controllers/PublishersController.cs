@@ -42,10 +42,10 @@ namespace LibraryERD.Controllers
         }
 
 
-        [HttpPut("UpdatePublisher/{id}")]
-        public async Task<ActionResult<Publishers>> UpdatePublisher(int id, Publishers updatedPublisher)
+        [HttpPut("UpdatePublisher")]
+        public async Task<ActionResult<Publishers>> UpdatePublisher(Publishers updatedPublisher)
         {
-            var publisher = await _context.Publisher.Where(e => e.PublisherId == id).FirstOrDefaultAsync();
+            var publisher = await _context.Publisher.Where(e => e.PublisherId == updatedPublisher.PublisherId).FirstOrDefaultAsync();
             if (publisher is null)
             {
                 return NotFound("PUBLISHER NOT FOUND");

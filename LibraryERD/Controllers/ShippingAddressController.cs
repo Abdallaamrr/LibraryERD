@@ -42,10 +42,10 @@ namespace LibraryERD.Controllers
         }
 
 
-        [HttpPut("UpdateShippingAddress/{id}")]
-        public async Task<ActionResult<ShippingAddresses>> UpdateShippingAddress(int id, ShippingAddresses updatedShippingAddress)
+        [HttpPut("UpdateShippingAddress")]
+        public async Task<ActionResult<ShippingAddresses>> UpdateShippingAddress(ShippingAddresses updatedShippingAddress)
         {
-            var shippingAddress = await _context.ShippingAddress.Where(e => e.CustomerId == id).FirstOrDefaultAsync();
+            var shippingAddress = await _context.ShippingAddress.Where(e => e.CustomerId == updatedShippingAddress.CustomerId).FirstOrDefaultAsync();
             if (shippingAddress is null)
             {
                 return NotFound("SHIPPING ADDRESS NOT FOUND");

@@ -42,10 +42,10 @@ namespace LibraryERD.Controllers
         }
 
 
-        [HttpPut("UpdateOrderItem/{OrderId}/book/{BookId}")]
-        public async Task<ActionResult<OrderItems>> UpdateOrderItem(int OrderId, int BookId, OrderItems updatedOrderItem)
+        [HttpPut("UpdateOrderItem")]
+        public async Task<ActionResult<OrderItems>> UpdateOrderItem(OrderItems updatedOrderItem)
         {
-            var orderItem = await _context.OrderItem.Where(e => e.OrderId == OrderId && e.BookId == BookId).FirstOrDefaultAsync();
+            var orderItem = await _context.OrderItem.Where(e => e.OrderId == updatedOrderItem.OrderId && e.BookId == updatedOrderItem.BookId).FirstOrDefaultAsync();
             if (orderItem is null)
             {
                 return NotFound("Order Item NOT FOUND");

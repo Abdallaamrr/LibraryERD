@@ -42,19 +42,19 @@ namespace LibraryERD.Controllers
         }
 
 
-        [HttpPut("UpdateAuthor/{id}")]
-        public async Task<ActionResult<Authors>> UpdateAuthor(int id, Authors updatedAuthor)
+        [HttpPut("UpdateAuthor")]
+        public async Task<ActionResult<Authors>> UpdateAuthor(Authors author)
         {
-            var author = await _context.Author.Where(e => e.AuthorId == id).FirstOrDefaultAsync();
-            if (author is null)
+            var updatedAuthor = await _context.Author.Where(e => e.AuthorId == author.AuthorId).FirstOrDefaultAsync();
+            if (updatedAuthor is null)
             {
                 return NotFound("USER NOT FOUND");
             }
-            author.FirstName = updatedAuthor.FirstName;
-            author.LastName = updatedAuthor.LastName;
+            updatedAuthor.FirstName = author.FirstName;
+            updatedAuthor.LastName = author.LastName;
 
             await _context.SaveChangesAsync();
-            return Ok(author);
+            return Ok(updatedAuthor);
         }
 
         [HttpDelete("DeleteAuthor/{id}")]

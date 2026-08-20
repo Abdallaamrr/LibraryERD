@@ -42,10 +42,10 @@ namespace LibraryERD.Controllers
         }
 
 
-        [HttpPut("UpdateBookDetail/{id}")]
-        public async Task<ActionResult<BookDetails>> UpdateBookDetail(int id, BookDetails updatedBookDetail)
+        [HttpPut("UpdateBookDetail")]
+        public async Task<ActionResult<BookDetails>> UpdateBookDetail(BookDetails updatedBookDetail)
         {
-            var bookDetail = await _context.BookDetail.Where(e => e.BookId == id).FirstOrDefaultAsync();
+            var bookDetail = await _context.BookDetail.Where(e => e.BookId == updatedBookDetail.BookId).FirstOrDefaultAsync();
             if (bookDetail is null)
             {
                 return NotFound("BOOK DETAIL NOT FOUND");

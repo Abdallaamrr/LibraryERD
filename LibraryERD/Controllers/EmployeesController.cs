@@ -42,10 +42,10 @@ namespace LibraryERD.Controllers
         }
 
 
-        [HttpPut("UpdateEmployee/{id}")]
-        public async Task<ActionResult<Employees>> UpdateEmployee(int id, Employees updatedEmployee)
+        [HttpPut("UpdateEmployee")]
+        public async Task<ActionResult<Employees>> UpdateEmployee(Employees updatedEmployee)
         {
-            var employee = await _context.Employee.Where(e => e.EmployeeId == id).FirstOrDefaultAsync();
+            var employee = await _context.Employee.Where(e => e.EmployeeId == updatedEmployee.EmployeeId).FirstOrDefaultAsync();
             if (employee is null)
             {
                 return NotFound("USER NOT FOUND");

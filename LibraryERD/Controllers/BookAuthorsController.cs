@@ -41,10 +41,10 @@ namespace LibraryERD.Domain
         }
 
 
-        [HttpPut("UpdateBookAuthor/{BookId}/Author/{AuthorId}")]
-        public async Task<ActionResult<BookAuthors>> UpdateBookAuthor(int BookId, int AuthorId, BookAuthors updatedBookAuthor)
+        [HttpPut("UpdateBookAuthor")]
+        public async Task<ActionResult<BookAuthors>> UpdateBookAuthor(BookAuthors updatedBookAuthor)
         {
-            var bookAuthor = await _context.BookAuthor.Where(e => e.AuthorId == AuthorId && e.BookId == BookId).FirstOrDefaultAsync();
+            var bookAuthor = await _context.BookAuthor.Where(e => e.AuthorId == updatedBookAuthor.AuthorId && e.BookId == updatedBookAuthor.BookId).FirstOrDefaultAsync();
             if (bookAuthor is null)
             {
                 return NotFound("BOOK AUTHOR NOT FOUND");

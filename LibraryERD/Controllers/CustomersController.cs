@@ -42,10 +42,10 @@ namespace LibraryERD.Controllers
         }
 
 
-        [HttpPut("UpdateCustomer/{id}")]
-        public async Task<ActionResult<Customers>> UpdateCustomer(int id, Customers updatedCustomer)
+        [HttpPut("UpdateCustomer")]
+        public async Task<ActionResult<Customers>> UpdateCustomer(Customers updatedCustomer)
         {
-            var customer = await _context.Customer.Where(e => e.CustomerId == id).FirstOrDefaultAsync();
+            var customer = await _context.Customer.Where(e => e.CustomerId == updatedCustomer.CustomerId).FirstOrDefaultAsync();
             if (customer is null)
             {
                 return NotFound("USER NOT FOUND");
